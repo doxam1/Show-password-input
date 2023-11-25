@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First github page website </title>
+</head>
+<style>
+
+    form, h1 {
+        margin: 5% auto;
+        width: fit-content;
+    }
+    input {
+        border: none;
+        outline: none;
+    }
+    .passLine {
+        display: flex;
+        border: 2px solid #eee;
+    }
+
+
+    .passShowImg {
+        cursor:pointer;  
+        width: 20px;
+        opacity: 30%;
+        
+    }
+
+    .passShowImg:hover {
+        opacity: 100%;
+        }
+    
+    button[type='submit'] {
+        padding: 5px 10px;
+        display: block;
+        margin: 15px auto;
+    }
+</style>
+<body>
+    <h1> Show Password on icon click </h1>
+    <form>
+        <fieldset>
+            <legend> show pass on click </legend>
+            <label for="password"> enter password: </label>
+             <div class="passLine">
+                <input id="password" type="password" />
+                <div class="passShowImg"></div>
+            </div>         
+                <button type="submit"> enter </button>            
+        </fieldset>
+    </form>
+
+    <script>
+        const passInput = document.querySelector('#password');
+        const passLine = document.querySelector('.passLine');
+        const passShowImg = document.querySelector('.passShowImg');
+        let passShow = false;
+
+        passLine.addEventListener('mouseover', () => {
+            if (passShow == false) {
+            passShowImg.style.background = 'right/80% no-repeat url("./images/eye.svg")';
+            } else if (passShow == true) {
+                passShowImg.style.background = 'right/80% no-repeat url("./images/eye-off.svg")';
+            }
+        })
+
+        passShowImg.addEventListener('click', ()=> {
+            if (passShow == false) {
+                passShowImg.style.background = 'right/80% no-repeat url("./images/eye-off.svg")';
+                passInput.setAttribute('type', 'text');
+                passShow = true;
+            } else if (passShow == true) {
+                passShowImg.style.background = 'right/80% no-repeat url("./images/eye.svg")'
+                passInput.setAttribute('type', 'password');
+                passShow = false;
+            }});
+    
+        passLine.addEventListener('mouseout', ()=> passShowImg.style.background = '')
+    </script>
+    
+</body>
+</html>
